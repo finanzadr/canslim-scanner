@@ -1,0 +1,72 @@
+{
+  "generated_at": "2025-06-09T21:15:00Z",
+  "date": "2025-06-09",
+  "market_blocked": false,
+  "market_note": "SPX alcista · 2 días distribución · FTD confirmado",
+  "total_scanned": 62,
+  "total_passing": 3,
+  "results": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "industry": "Semiconductors",
+      "market_cap": 2800000000000,
+      "scan_date": "2025-06-09",
+      "score": 29,
+      "max_score": 32,
+      "grade": "strong",
+      "weinstein_stage": 2,
+      "scores": { "weinstein": 5, "M": 4, "C": 4, "A": 4, "N": 3, "S": 4, "L": 3, "I": 2 },
+      "metrics": { "eps_growth": 88.5, "revenue_growth": 122.0, "roe": 91.2, "rs_value": 45.2, "rs_percentile": 96, "buy_point": 950.0, "vol_ratio": 1.8, "inst_pct": 65.4 },
+      "details": {
+        "C": {
+          "C1_eps_trimestral_yoy": { "passed": true, "note": "EPS YoY +88.5% (mín 25%)" },
+          "C2_ventas_trimestrales_yoy": { "passed": true, "note": "Ventas YoY +122.0% (mín 25%)" },
+          "C3_aceleracion_eps": { "passed": true, "note": "Trim actual +88.5% > trim anterior +71.2%" },
+          "C4_earnings_beat": { "passed": true, "note": "Beat +12.3% (actual 5.98 vs est 5.32)" }
+        },
+        "A": {
+          "A1_eps_anual_consecutivo": { "passed": true, "note": "Crec. 3 años: +126.2%  +48.5%  +55.0%" },
+          "A2_roe": { "passed": true, "note": "ROE 91.2% (mín 17%)" },
+          "A3_margen_neto": { "passed": true, "note": "Margen 55.1% (mín 5%) · tendencia OK" },
+          "A4_sin_eps_negativo": { "passed": true, "note": "Sin EPS negativo en 3 años" }
+        }
+      },
+      "error": ""
+    },
+    {
+      "ticker": "COST",
+      "name": "Costco Wholesale Corporation",
+      "sector": "Consumer Staples",
+      "industry": "Discount Stores",
+      "market_cap": 380000000000,
+      "scan_date": "2025-06-09",
+      "score": 25,
+      "max_score": 32,
+      "grade": "valid",
+      "weinstein_stage": 2,
+      "scores": { "weinstein": 5, "M": 4, "C": 3, "A": 4, "N": 2, "S": 3, "L": 2, "I": 2 },
+      "metrics": { "eps_growth": 31.4, "revenue_growth": 28.7, "roe": 29.5, "rs_value": 18.2, "rs_percentile": 84, "buy_point": 895.0, "vol_ratio": 1.2, "inst_pct": 71.2 },
+      "details": {},
+      "error": ""
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "sector": "Health Care",
+      "industry": "Drug Manufacturers",
+      "market_cap": 720000000000,
+      "scan_date": "2025-06-09",
+      "score": 24,
+      "max_score": 32,
+      "grade": "valid",
+      "weinstein_stage": 2,
+      "scores": { "weinstein": 4, "M": 4, "C": 4, "A": 3, "N": 2, "S": 3, "L": 2, "I": 2 },
+      "metrics": { "eps_growth": 102.5, "revenue_growth": 45.8, "roe": 67.3, "rs_value": 22.5, "rs_percentile": 87, "buy_point": 890.0, "vol_ratio": 1.1, "inst_pct": 78.5 },
+      "details": {},
+      "error": ""
+    }
+  ],
+  "all_results": []
+}
