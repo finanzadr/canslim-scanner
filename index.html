@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANSLIM Scanner + Weinstein Stage 2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>CANSLIM Scanner</h1>
+      <span class="header-sub">+ Weinstein Stage 2</span>
+    </div>
+    <div class="header-right">
+      <div class="market-badge" id="market-badge">Cargando...</div>
+      <div class="scan-date" id="scan-date"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Métricas resumen -->
+  <div class="metrics-row" id="metrics-row">
+    <div class="metric-card">
+      <div class="metric-label">Acciones pasando</div>
+      <div class="metric-value" id="m-passing">—</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Setups élite ★★</div>
+      <div class="metric-value green" id="m-elite">—</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Setups fuertes ★</div>
+      <div class="metric-value blue" id="m-strong">—</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Universo escaneado</div>
+      <div class="metric-value" id="m-total">—</div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-row">
+    <input type="text" id="search" placeholder="Buscar ticker o empresa..." autocomplete="off">
+    <select id="filter-grade">
+      <option value="">Todos los grades</option>
+      <option value="elite">★★ Élite (≥30)</option>
+      <option value="strong">★ Fuerte (≥27)</option>
+      <option value="valid">✓ Válido (≥22)</option>
+    </select>
+    <select id="filter-sector">
+      <option value="">Todos los sectores</option>
+    </select>
+    <button id="btn-refresh" onclick="loadData()">↻ Actualizar</button>
+  </div>
+
+  <!-- Mercado bloqueado -->
+  <div class="market-blocked" id="market-blocked" style="display:none">
+    <div class="blocked-icon">⚠</div>
+    <div>
+      <div class="blocked-title">Mercado no alcista — scanner pausado</div>
+      <div class="blocked-sub" id="blocked-note"></div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-wrap">
+    <table id="results-table">
+      <thead>
+        <tr>
+          <th class="col-rank">#</th>
+          <th class="col-ticker" data-sort="ticker">Ticker</th>
+          <th class="col-score" data-sort="score">Score ↕</th>
+          <th class="col-grade">Grade</th>
+          <th class="col-stage">Stage</th>
+          <th class="col-eps" data-sort="eps">EPS% ↕</th>
+          <th class="col-roe" data-sort="roe">ROE%</th>
+          <th class="col-rs" data-sort="rs">RS</th>
+          <th class="col-vol">Vol×</th>
+          <th class="col-sector">Sector</th>
+          <th class="col-action">TV</th>
+        </tr>
+      </thead>
+      <tbody id="results-body">
+        <tr><td colspan="11" class="loading">Cargando datos...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Panel de detalle (click en fila) -->
+  <div class="detail-panel" id="detail-panel" style="display:none">
+    <div class="detail-header">
+      <div>
+        <span class="detail-ticker" id="d-ticker"></span>
+        <span class="detail-name" id="d-name"></span>
+      </div>
+      <button class="detail-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="detail-scores" id="d-scores"></div>
+    <div class="detail-criteria" id="d-criteria"></div>
+  </div>
+
+</main>
+
+<footer>
+  <span>CANSLIM + Weinstein Stage 2 Scanner</span>
+  <span id="footer-date"></span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
