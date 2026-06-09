@@ -1,0 +1,13 @@
+# CANSLIM Scanner — dependencias
+# Instalar con: pip install -r requirements.txt
+
+# Datos de mercado
+yfinance>=0.2.40
+
+# HTTP y datos
+requests>=2.31.0
+pandas>=2.0.0
+numpy>=1.26.0
+
+# Variables de entorno
+python-dotenv>=1.0.0
