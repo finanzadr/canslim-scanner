@@ -175,22 +175,31 @@ function rowHtml(r, rank) {
       </div>`;
   }
 
-  const fmtPct = v => `<span class="${v >= 25 ? "val-pos" : v < 0 ? "val-neg" : ""}">${v > 0 ? "+" : ""}${v.toFixed(1)}%</span>`;
-  const fmtRs  = v => `<span class="${v >= 10 ? "val-pos" : v < 0 ? "val-neg" : "val-neutral"}">${v > 0 ? "+" : ""}${v.toFixed(1)}%</span>`;
+  // Earnings warning
+  const earn    = r.earnings || {};
+  const earnDate = earn.next_date || "";
+  const earnDays = earn.days_to  ?? -1;
+  const earnWarn = earn.warning  || false;
 
-  const eps  = m.eps_growth ?? 0;
-  const roe  = m.roe        ?? 0;
-  const rs   = m.rs_value   ?? 0;
-  const vol  = m.vol_ratio  ?? 0;
+  let earnBadge = "";
+  if (earnDate) {
+    if (earnWarn) {
+      earnBadge = `<div style="margin-top:3px"><span style="font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(210,153,34,.15);color:#d29922;border:1px solid rgba(210,153,34,.3)">⚠ Earnings ${earnDays}d</span></div>`;
+    } else {
+      earnBadge = `<div style="margin-top:3px;font-size:10px;color:var(--muted)">Earn: ${earnDate}</div>`;
+    }
+  }
+
+  const tvUrl = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(r.ticker)}`;
   const cap  = r.market_cap >= 1e12 ? `$${(r.market_cap/1e12).toFixed(1)}T`
              : r.market_cap >= 1e9  ? `$${(r.market_cap/1e9).toFixed(1)}B` : "";
-  const tvUrl = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(r.ticker)}`;
 
   return `<tr data-ticker="${r.ticker}">
     <td class="col-rank">${rank}</td>
     <td class="col-ticker">
       ${r.ticker}
       ${cap ? `<div style="font-size:10px;color:var(--muted)">${cap}</div>` : ""}
+      ${earnBadge}
     </td>
     <td class="col-score">
       <div class="score-bar-wrap">
@@ -239,7 +248,20 @@ function showDetail(r, tr) {
 
   // Entry setup destacado
   const entry = r.details?.entry || {};
+  const earn  = r.earnings || {};
   let entryHtml = "";
+
+  // Warning de earnings
+  if (earn.next_date) {
+    const warnStyle = earn.warning
+      ? "background:rgba(210,153,34,.1);border:1px solid rgba(210,153,34,.3);color:#d29922"
+      : "background:var(--surface);border:0.5px solid var(--border);color:var(--muted)";
+    entryHtml += `<div style="font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:8px;${warnStyle}">
+      ${earn.warning ? "⚠" : "📅"} Próximos earnings: <strong>${earn.next_date}</strong>
+      ${earn.days_to >= 0 ? `· en ${earn.days_to} días` : ""}
+      ${earn.warning ? " — <strong>Precaución: no entrar antes de reportar</strong>" : ""}
+    </div>`;
+  }
   if (entry.valid && entry.pivot) {
     const actionable = entry.actionable;
     const rr = entry.rr_ratio || 3;
