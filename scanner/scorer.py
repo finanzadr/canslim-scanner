@@ -212,3 +212,58 @@ def _build_details(w, m, c, a, n, s, l, i) -> dict:
     if l: d["L"]         = l.details
     if i: d["I"]         = i.details
     return d
+
+
+# ── Integración mejoras v2 ────────────────────────────────────────────────────
+
+def build_result_v2(
+    ticker, fund_data, weinstein_res, market_res,
+    c_res, a_res, n_res, s_res, l_res, i_res,
+    sector_res, surprise_res, entry_params, cfg
+) -> ScanResult:
+    """
+    Versión 2 del builder — incluye sector Stage 2,
+    earnings surprise y parámetros de entrada.
+    """
+    from .criteria_entry import to_dict as entry_to_dict
+
+    res = build_result(
+        ticker, fund_data, weinstein_res, market_res,
+        c_res, a_res, n_res, s_res, l_res, i_res, cfg
+    )
+
+    # Sector eliminatorio
+    if sector_res and not sector_res.passed:
+        res.score   = 0
+        res.error   = f"Sector en Stage {sector_res.stage} ({sector_res.etf})"
+        res.details["sector"] = {
+            "passed": False,
+            "note":   sector_res.note
+        }
+        return res
+
+    if sector_res:
+        res.details["sector"] = {
+            "passed": sector_res.passed,
+            "note":   sector_res.note
+        }
+
+    # Earnings surprise — modifica score de C
+    if surprise_res and surprise_res.available:
+        res.score = min(res.score + surprise_res.score_modifier,
+                        cfg.scoring.score_max)
+        res.score = max(res.score, 0)
+        res.details["earnings_surprise"] = {
+            "passed":       surprise_res.beat,
+            "surprise_pct": surprise_res.surprise_pct,
+            "modifier":     surprise_res.score_modifier,
+            "note":         surprise_res.note
+        }
+
+    # Parámetros de entrada
+    if entry_params:
+        res.details["entry"] = entry_to_dict(entry_params)
+        if entry_params.valid:
+            res.details["entry"]["actionable"] = entry_params.actionable
+
+    return res
