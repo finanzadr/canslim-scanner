@@ -1,7 +1,7 @@
 // app.js — CANSLIM Scanner Dashboard
 // Lee results_latest.json y renderiza la tabla con filtros y detalle
 
-const DATA_URL = "../data/results_latest.json";
+const DATA_URL = "data/results_latest.json";
 
 let allResults  = [];
 let sortKey     = "score";
