@@ -264,7 +264,7 @@ def main():
     parser.add_argument("--tickers",  nargs="+", metavar="T",
                         help="Tickers específicos (ej: NVDA AAPL MSFT)")
     parser.add_argument("--universe", default="default",
-                        choices=["default", "sp500", "nasdaq100", "custom"],
+                       choices=["default", "sp500", "nasdaq100", "sp500_nasdaq", "combined", "custom"],
                         help="Universo a escanear (default: default)")
     parser.add_argument("--source",   default="yfinance",
                         choices=["yfinance", "fmp"],
