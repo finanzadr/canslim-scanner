@@ -1,0 +1,25 @@
+### CANSLIM Scanner 2026-06-10
+### 11 acciones · score >= 22/32
+
+### AMD | VALID | Score 23/32
+AMD
+### AFL | VALID | Score 23/32
+AFL
+### GOOG | VALID | Score 22/32
+GOOG
+### AAPL | VALID | Score 23/32
+AAPL
+### CAT | VALID | Score 22/32
+CAT
+### CPAY | VALID | Score 22/32
+CPAY
+### FTNT | VALID | Score 23/32
+FTNT
+### BEN | VALID | Score 22/32
+BEN
+### JBHT | VALID | Score 23/32
+JBHT
+### MAR | VALID | Score 22/32
+MAR
+### MPC | VALID | Score 23/32
+MPC
