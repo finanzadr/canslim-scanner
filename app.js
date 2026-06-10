@@ -190,6 +190,13 @@ function rowHtml(r, rank) {
     }
   }
 
+  const fmtPct = v => `<span class="${v >= 25 ? "val-pos" : v < 0 ? "val-neg" : ""}">${v > 0 ? "+" : ""}${v.toFixed(1)}%</span>`;
+  const fmtRs  = v => `<span class="${v >= 10 ? "val-pos" : v < 0 ? "val-neg" : "val-neutral"}">${v > 0 ? "+" : ""}${v.toFixed(1)}%</span>`;
+
+  const eps  = m.eps_growth ?? 0;
+  const roe  = m.roe        ?? 0;
+  const rs   = m.rs_value   ?? 0;
+
   const tvUrl = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(r.ticker)}`;
   const cap  = r.market_cap >= 1e12 ? `$${(r.market_cap/1e12).toFixed(1)}T`
              : r.market_cap >= 1e9  ? `$${(r.market_cap/1e9).toFixed(1)}B` : "";
