@@ -3,7 +3,7 @@ name: CANSLIM Scanner Diario
 on:
   schedule:
     # 21:15 UTC = 5:15pm hora del Este (mercado cierra 4pm ET)
-    - cron: "15 21 * * 1-5"
+    - cron: "30 19 * * 1-5"
   workflow_dispatch:
     # Permite correr manualmente desde GitHub Actions
 
