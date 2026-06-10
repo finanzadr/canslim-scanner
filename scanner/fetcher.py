@@ -61,6 +61,11 @@ class FundamentalData:
     float_shares: float = 0.0             # flotación (S)
     error:      str = ""
 
+    # Earnings date
+    next_earnings_date: str = ""          # "2026-07-23" o ""
+    days_to_earnings:   int = -1          # días hasta earnings (-1 = desconocido)
+    earnings_warning:   bool = False      # True si earnings en <= 14 días
+
 
 @dataclass
 class MarketData:
@@ -175,6 +180,9 @@ class YFinanceFetcher:
                             ni / eq if eq and eq != 0 else 0.0
                             for ni, eq in zip(net_i, equity)
                         ]
+
+                # ── Próximos earnings ─────────────────────────────────────
+                _fetch_earnings_date(tk, info, data)
 
                 return data
 
@@ -363,3 +371,93 @@ def _yoy_growth(values: list[float]) -> list[float]:
             g = 0.0
         growths.append(round(g, 4))
     return growths
+
+
+def _fetch_earnings_date(tk, info: dict, data) -> None:
+    """
+    Obtiene la fecha del próximo earnings report desde yfinance.
+    Actualiza data.next_earnings_date, data.days_to_earnings
+    y data.earnings_warning (True si earnings en <= 14 días).
+
+    Fuentes en orden de prioridad:
+      1. info["earningsTimestamp"] o info["earningsDate"]
+      2. tk.calendar (DataFrame con fechas)
+      3. tk.earnings_dates (historial + próximas fechas)
+    """
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime.now(timezone.utc)
+
+    # ── Fuente 1: info dict ───────────────────────────────────────────────
+    for key in ("earningsTimestamp", "earningsTimestampStart",
+                "earningsTimestampEnd"):
+        ts = info.get(key)
+        if ts and isinstance(ts, (int, float)) and ts > 0:
+            try:
+                dt = datetime.fromtimestamp(ts, tz=timezone.utc)
+                if dt > now:
+                    _set_earnings(data, dt, now)
+                    return
+            except Exception:
+                pass
+
+    # ── Fuente 2: calendar ────────────────────────────────────────────────
+    try:
+        cal = tk.calendar
+        if cal is not None:
+            # Puede ser dict o DataFrame según versión de yfinance
+            if isinstance(cal, dict):
+                ed = cal.get("Earnings Date")
+                if ed:
+                    dates = ed if isinstance(ed, list) else [ed]
+                    for d in dates:
+                        try:
+                            dt = pd.Timestamp(d).to_pydatetime()
+                            if dt.tzinfo is None:
+                                dt = dt.replace(tzinfo=timezone.utc)
+                            if dt > now:
+                                _set_earnings(data, dt, now)
+                                return
+                        except Exception:
+                            pass
+            elif hasattr(cal, "loc"):
+                for row_name in cal.index:
+                    if "earnings" in str(row_name).lower():
+                        val = cal.loc[row_name]
+                        vals = val.tolist() if hasattr(val, "tolist") else [val]
+                        for v in vals:
+                            try:
+                                dt = pd.Timestamp(v).to_pydatetime()
+                                if dt.tzinfo is None:
+                                    dt = dt.replace(tzinfo=timezone.utc)
+                                if dt > now:
+                                    _set_earnings(data, dt, now)
+                                    return
+                            except Exception:
+                                pass
+    except Exception:
+        pass
+
+    # ── Fuente 3: earnings_dates ──────────────────────────────────────────
+    try:
+        ed = tk.earnings_dates
+        if ed is not None and not ed.empty:
+            future = ed[ed.index > pd.Timestamp(now)]
+            if not future.empty:
+                next_dt = future.index[-1]   # más próximo
+                dt = pd.Timestamp(next_dt).to_pydatetime()
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                _set_earnings(data, dt, now)
+    except Exception:
+        pass
+
+
+def _set_earnings(data, dt, now) -> None:
+    """Asigna los campos de earnings en FundamentalData."""
+    from datetime import timezone
+    data.next_earnings_date = dt.strftime("%Y-%m-%d")
+    delta = (dt.replace(tzinfo=timezone.utc)
+             if dt.tzinfo is None else dt) - now
+    data.days_to_earnings  = max(0, delta.days)
+    data.earnings_warning  = data.days_to_earnings <= 14

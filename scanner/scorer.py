@@ -53,6 +53,11 @@ class ScanResult:
     inst_pct:        float = 0.0
     weinstein_stage: int   = 0
 
+    # Earnings
+    next_earnings_date: str  = ""
+    days_to_earnings:   int  = -1
+    earnings_warning:   bool = False
+
     # Estado del resultado
     error: str = ""
 
@@ -104,6 +109,11 @@ class ScanResult:
                 "inst_pct":       round(self.inst_pct * 100, 1),
             },
             "details": self.details,
+            "earnings": {
+                "next_date":      self.next_earnings_date,
+                "days_to":        self.days_to_earnings,
+                "warning":        self.earnings_warning,
+            },
             "error":   self.error,
         }
 
@@ -137,6 +147,10 @@ def build_result(
         res.sector     = fund_data.sector
         res.industry   = fund_data.industry
         res.market_cap = fund_data.market_cap
+        # Earnings
+        res.next_earnings_date = fund_data.next_earnings_date
+        res.days_to_earnings   = fund_data.days_to_earnings
+        res.earnings_warning   = fund_data.earnings_warning
 
     # ── Bloqueantes ───────────────────────────────────────────────────────
     res.weinstein_passed = weinstein_res.passed if weinstein_res else False
