@@ -323,3 +323,40 @@ footer {
   .col-sector, .col-roe, .col-vol { display: none; }
   main { padding: 1rem; }
 }
+
+/* ── Entry / Accionable ── */
+.action-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.action-yes  { background: rgba(63,185,80,.15); color: #3fb950; border: 1px solid rgba(63,185,80,.3); }
+.action-wait { background: rgba(88,166,255,.1);  color: #58a6ff; border: 1px solid rgba(88,166,255,.2); }
+.action-none { color: var(--muted); }
+
+.col-entry { width: 160px; }
+.col-action-badge { width: 90px; }
+.col-tv { width: 44px; text-align: center; }
+
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+.filter-check input { cursor: pointer; }
+.filter-check:hover { border-color: var(--green); color: var(--green); }
+
+@media (max-width: 768px) {
+  .col-roe, .col-sector { display: none; }
+  .col-entry { width: 120px; }
+}

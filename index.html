@@ -23,15 +23,18 @@
 
 <main>
 
-  <!-- Métricas resumen -->
   <div class="metrics-row" id="metrics-row">
     <div class="metric-card">
       <div class="metric-label">Acciones pasando</div>
       <div class="metric-value" id="m-passing">—</div>
     </div>
     <div class="metric-card">
+      <div class="metric-label">⚡ Accionables hoy</div>
+      <div class="metric-value green" id="m-actionable">—</div>
+    </div>
+    <div class="metric-card">
       <div class="metric-label">Setups élite ★★</div>
-      <div class="metric-value green" id="m-elite">—</div>
+      <div class="metric-value" id="m-elite">—</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Setups fuertes ★</div>
@@ -43,7 +46,6 @@
     </div>
   </div>
 
-  <!-- Filtros -->
   <div class="filters-row">
     <input type="text" id="search" placeholder="Buscar ticker o empresa..." autocomplete="off">
     <select id="filter-grade">
@@ -55,10 +57,13 @@
     <select id="filter-sector">
       <option value="">Todos los sectores</option>
     </select>
+    <label class="filter-check">
+      <input type="checkbox" id="filter-actionable">
+      ⚡ Solo accionables
+    </label>
     <button id="btn-refresh" onclick="loadData()">↻ Actualizar</button>
   </div>
 
-  <!-- Mercado bloqueado -->
   <div class="market-blocked" id="market-blocked" style="display:none">
     <div class="blocked-icon">⚠</div>
     <div>
@@ -67,7 +72,6 @@
     </div>
   </div>
 
-  <!-- Tabla -->
   <div class="table-wrap">
     <table id="results-table">
       <thead>
@@ -77,21 +81,21 @@
           <th class="col-score" data-sort="score">Score ↕</th>
           <th class="col-grade">Grade</th>
           <th class="col-stage">Stage</th>
+          <th class="col-action-badge">Estado</th>
+          <th class="col-entry" data-sort="pivot">Entry / Stop / T3R ↕</th>
           <th class="col-eps" data-sort="eps">EPS% ↕</th>
           <th class="col-roe" data-sort="roe">ROE%</th>
-          <th class="col-rs" data-sort="rs">RS</th>
-          <th class="col-vol">Vol×</th>
+          <th class="col-rs" data-sort="rs">RS ↕</th>
           <th class="col-sector">Sector</th>
-          <th class="col-action">TV</th>
+          <th class="col-tv">TV</th>
         </tr>
       </thead>
       <tbody id="results-body">
-        <tr><td colspan="11" class="loading">Cargando datos...</td></tr>
+        <tr><td colspan="13" class="loading">Cargando datos...</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Panel de detalle (click en fila) -->
   <div class="detail-panel" id="detail-panel" style="display:none">
     <div class="detail-header">
       <div>
