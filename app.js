@@ -1,7 +1,7 @@
 // app.js — CANSLIM Scanner Dashboard v2
 // Muestra pivot, stop, target 3R y badge accionable
 
-const DATA_URL = "results_latest.json";
+const DATA_URL = "data/results_latest.json"
 
 let allResults = [];
 let sortKey    = "score";
