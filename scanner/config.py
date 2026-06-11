@@ -59,7 +59,7 @@ class MarketConfig:
 
     # Días de distribución (presión vendedora institucional)
     distribution_window:  int = 25       # sesiones a revisar
-    distribution_max:     int = 6        # máximo días de distribución permitidos
+    distribution_max:     int = 4        # máximo días de distribución permitidos
     distribution_vol_min: float = 1.03   # vol día distrib. >= 1.03× día anterior
 
     # Follow-Through Day (FTD) — confirmación de rally
