@@ -1,25 +1,37 @@
-### CANSLIM Scanner 2026-06-10
-### 11 acciones · score >= 22/32
+### CANSLIM Scanner 2026-08-17
+### 17 acciones · score >= 22/32
 
-### AMD | VALID | Score 23/32
-AMD
-### AFL | VALID | Score 23/32
-AFL
-### GOOG | VALID | Score 22/32
-GOOG
-### AAPL | VALID | Score 23/32
+### AMZN | VALID | Score 22/32
+AMZN
+### APH | VALID | Score 22/32
+APH
+### AAPL | VALID | Score 22/32
 AAPL
-### CAT | VALID | Score 22/32
-CAT
-### CPAY | VALID | Score 22/32
+### ANET | VALID | Score 25/32
+ANET
+### BAC | VALID | Score 24/32
+BAC
+### KO | VALID | Score 22/32
+KO
+### CPAY | VALID | Score 23/32
 CPAY
-### FTNT | VALID | Score 23/32
+### DELL | VALID | Score 24/32
+DELL
+### DXCM | VALID | Score 22/32
+DXCM
+### FANG | VALID | Score 23/32
+FANG
+### EOG | VALID | Score 22/32
+EOG
+### EXPD | VALID | Score 24/32
+EXPD
+### FTNT | VALID | Score 25/32
 FTNT
-### BEN | VALID | Score 22/32
-BEN
-### JBHT | VALID | Score 23/32
+### GRMN | VALID | Score 25/32
+GRMN
+### JBHT | VALID | Score 22/32
 JBHT
-### MAR | VALID | Score 22/32
-MAR
-### MPC | VALID | Score 23/32
-MPC
+### JNJ | VALID | Score 22/32
+JNJ
+### JPM | VALID | Score 23/32
+JPM
