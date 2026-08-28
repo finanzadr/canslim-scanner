@@ -1,37 +1,39 @@
-### CANSLIM Scanner 2026-08-17
-### 17 acciones · score >= 22/32
+### CANSLIM Scanner 2026-08-28
+### 18 acciones · score >= 22/32
 
-### AMZN | VALID | Score 22/32
-AMZN
-### APH | VALID | Score 22/32
-APH
-### AAPL | VALID | Score 22/32
+### ABBV | VALID | Score 22/32
+ABBV
+### AAPL | VALID | Score 24/32
 AAPL
 ### ANET | VALID | Score 25/32
 ANET
-### BAC | VALID | Score 24/32
+### T | VALID | Score 22/32
+T
+### BAC | VALID | Score 22/32
 BAC
-### KO | VALID | Score 22/32
+### CVX | VALID | Score 22/32
+CVX
+### KO | VALID | Score 23/32
 KO
-### CPAY | VALID | Score 23/32
+### CPAY | VALID | Score 22/32
 CPAY
-### DELL | VALID | Score 24/32
-DELL
+### FANG | VALID | Score 22/32
+FANG
 ### DXCM | VALID | Score 22/32
 DXCM
-### FANG | VALID | Score 23/32
-FANG
-### EOG | VALID | Score 22/32
-EOG
-### EXPD | VALID | Score 24/32
+### DELL | VALID | Score 25/32
+DELL
+### EXPD | VALID | Score 23/32
 EXPD
-### FTNT | VALID | Score 25/32
+### FTNT | VALID | Score 26/32
 FTNT
-### GRMN | VALID | Score 25/32
+### GRMN | VALID | Score 22/32
 GRMN
-### JBHT | VALID | Score 22/32
-JBHT
-### JNJ | VALID | Score 22/32
+### INCY | VALID | Score 22/32
+INCY
+### JNJ | VALID | Score 23/32
 JNJ
 ### JPM | VALID | Score 23/32
 JPM
+### LH | VALID | Score 22/32
+LH
