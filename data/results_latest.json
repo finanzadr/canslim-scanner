@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-30T23:07:33.241826Z",
-  "date": "2026-10-30",
+  "generated_at": "2026-11-03T01:44:25.896400Z",
+  "date": "2026-11-03",
   "market_blocked": true,
-  "market_note": "Mercado neutral \u2014 1/5 checks \u00b7 SPX 756 \u00b7 Dist.days 9 \u00b7 Sin FTD",
+  "market_note": "Mercado bajista \u2014 0/5 checks \u00b7 SPX nan \u00b7 Dist.days 8 \u00b7 Sin FTD",
   "total_scanned": 0,
   "total_passing": 0,
   "results": [],
